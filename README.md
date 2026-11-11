@@ -145,6 +145,10 @@ Esses resultados são históricos e não representam uma nova execução da vers
 
 O ambiente de desenvolvimento utiliza Bun, PostgreSQL e LocalStack com o serviço SQS.
 
+A identidade do pacote é `transactional-wallet`. A configuração padrão usa o banco e usuário `transactional_wallet`, com os mesmos valores em `.env.example`, `docker-compose.yml` e `mikro-orm.config.ts`. As conexões padrão de PostgreSQL e SQS são locais.
+
+O Compose utiliza o volume `transactional_wallet_pgdata`. Ambientes configurados com os nomes anteriores precisam atualizar seu `.env` e migrar os dados, se necessário: o novo volume inicia um banco vazio e não remove nem importa o volume antigo.
+
 Os comandos exatos de instalação, configuração, migrations, criação das filas, inicialização da API e dos workers ainda precisam ser documentados a partir do `package.json` e dos arquivos reais do repositório. Este README não presume nomes de scripts ou variáveis de ambiente ainda não conferidos.
 
 Para concluir a reprodução local, a documentação deve permitir:
@@ -177,6 +181,6 @@ Para concluir a reprodução local, a documentação deve permitir:
 
 ## Contexto e autoria
 
-Desenvolvido por **Nicolay Padalko**. Iniciado como desafio técnico e organizado como projeto de portfólio para estudo de backend transacional, modelagem de domínio e recuperação de falhas.
+Desenvolvido por **Nicolay Padalko** como projeto de portfólio para estudo de backend transacional, modelagem de domínio e recuperação de falhas.
 
 O projeto demonstra decisões de engenharia e seus limites. Não há métricas publicadas de desempenho, disponibilidade ou operação em produção.
